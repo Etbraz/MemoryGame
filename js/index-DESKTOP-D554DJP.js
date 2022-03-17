@@ -84,42 +84,29 @@ function startGame(){
     //console.log(cardsLogos);
     shuffleArray(cardsLogos);
     //console.log(cardsLogos);
-    //showCards(cards);
+    showCards(cards);
 
     cards.forEach(function(element, index, arr){
-       
-        let i; 
-        if (index < (arr.length/2)){
+        let i;
+        if (index < arr.length/2){
             i = index;
-        }else{
-            i = arr.length - index - 1;
-        }  
+        }else 
+            i = arr.length - (index + 1);
+        }   
 
 
-        element.dataset.logo = cardsLogos[i];
+        element.dataset.logo = cardsLogos(i);
         let cardImg = element.querySelector('.card-front');
-        cardImg.src = 'images/' + cardsLogos[i] + '.png' ;
+        cardImg.src = 'images/' + cardsLogos(i) + '.png' ;
     });
 
 }
-/*
+
 function showCards(cards){
     cards.forEach(function(element, index, arr){
         element.classList.add('flipped');
     });
 }
-*/
-cards.forEach(function(element, index, arr){
-    element.addEventListener('click', function(){flipCard(this)});
-    element.addEventListener('mouseover', function(){this.classList.add('cardHover')});
-    element.addEventListener('mouseout', function(){this.classList.remove('cardHover')});
-});
-
-function flipCard(card){
-    card.classList.add('flipped');
-    //this.classList.add('flipped');
-}
-
 
 const shuffleArray = array =>{
     for (let i = array.length -1 ; i >0; i--){
